@@ -70,10 +70,13 @@ def find_info_email(bsobj):
 	ret = ""
 	r = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
 	
-	for s in bsobj.body(text=True):
-		for ss in str(s).split(" "):
-			if r.match(ss) != None:
-				ret += r.match(ss).group() + " "
+	try:
+		for s in bsobj.body(text=True):
+			for ss in str(s).split(" "):
+				if r.match(ss) != None:
+					ret += r.match(ss).group() + " "
+	except:
+		pass
 		
 	return ret
 
